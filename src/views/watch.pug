@@ -1,0 +1,58 @@
+extends base.pug
+
+block content
+    div#videoContainer(data-video_id=video._id)
+        if video.fileUrl
+            video(src="/" + video.fileUrl)
+        div#videoControls.videoControls
+            div.videoControls__play
+                span#play.videoControls__playBtn
+                    i.fas.fa-play
+                div.videoControls__time
+                    span#currentTime 00:00
+                    span  / 
+                    span#totalTime 00:00
+            input(type="range",step="1", value="0", min="0")#timeline.videoControls__timeline
+            div.videoControls__volume
+                input(type="range",step="0.1", value=0.8, min="0", max="1")#volume
+                span#mute
+                    i.fas.fa-volume-up
+            
+            div
+                span#fullScreen
+                    i.fas.fa-expand
+    div
+        each tag in video.hashtags
+            |   
+            span.tagSpan=tag
+    div 
+        p.descriptionP=video.description
+        small.createdAtSmall=video.createdAt
+    div.uploadedInfoDiv 
+        small Uploaded by 
+            a(href=`/users/${video.owner._id}`) #{video.owner.name}
+    if String(video.owner._id) === String(loggedInUser._id)
+        a(href=`${video.id}/edit`) Edit Video &rarr;
+        br
+        a(href=`${video.id}/delete`) Delete Video &rarr;
+
+    if loggedIn
+        div.video__add-comments
+            form.video__comment-form#commentForm
+                textarea(placeholder="Write a comment here")
+                i.far.fa-comments#addComments
+                button(style="display:none")#hiddenBtn
+    div.video__comments
+        ul 
+            each comment in video.comments.reverse()
+                li.video__comment(data-comment_id=comment._id)
+                    i.fas.fa-comment   
+                    span   #{comment.text}
+                    br
+                    if String(comment.owner) === String(loggedInUser._id)
+                        span.video__comment-delete ✖
+
+block scripts 
+    script(src="/static/js/videoPlayer.js")
+    if loggedIn
+        script(src="/static/js/commentSection.js")

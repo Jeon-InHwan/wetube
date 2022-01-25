@@ -1,0 +1,71 @@
+.tagSpan {
+  display: inline-block;
+  margin-top: 15px;
+  margin-left: 5px;
+  color: #3ef6ff;
+  margin-bottom: 15px;
+}
+
+.descriptionP {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.createdAtSmall {
+  font-size: 18px;
+}
+
+.uploadedInfoDiv {
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+.video__comments {
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+  max-width: 700px;
+  width: 100%;
+  margin-top: 20px;
+  .video__comment {
+    padding: 10px 25px;
+    border-radius: 9999px;
+    background-color: white;
+    color: black;
+    margin-bottom: 10px;
+    font-weight: 600;
+    line-height: 1.3em;
+  }
+
+  .video__comment-delete {
+    cursor: pointer;
+    position: relative;
+    left: 635px;
+    top: -9px;
+  }
+
+  .video__comment-deleted {
+    display: none;
+  }
+}
+
+.video__add-comments {
+  width: 100%;
+  margin-top: 25px;
+
+  textarea {
+    min-width: 95%;
+  }
+}
+
+#addComments {
+  cursor: pointer;
+  position: relative;
+  top: -8px;
+  right: -9px;
+  font-size: 25px;
+}
+
+#commentform {
+  width: 90%;
+}

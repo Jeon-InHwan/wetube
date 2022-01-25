@@ -1,0 +1,24 @@
+extends base.pug
+
+block content
+    div.profile__data
+        - if (loggedInUser.avatarUrl && loggedInUser.avatarUrl.startsWith("http"))
+            img(src=loggedInUser.avatarUrl, width="100", height="100", crossorigin).avatar
+        - if (loggedInUser.avatarUrl && !loggedInUser.avatarUrl.startsWith("http"))
+            img(src="/" + loggedInUser.avatarUrl, width="100", height="100").avatar
+        - if (!loggedInUser.avatarUrl)
+            span There is no Profile Picture!
+        h3=loggedInUser.name  
+    if errorMessage
+        span=errorMessage
+    form(method="POST", enctype="multipart/form-data").edit-profile__form
+        label(for="avatar") Avatar
+        input(type="file" id="avatar" name="avatar" accept="image/*")
+        input(placeholder="Name", name="name", type="text", value=loggedInUser.name, required)
+        input(placeholder="Email", name="email", type="email", value=loggedInUser.email, required)
+        input(placeholder="Username", name="username", type="text", value=loggedInUser.username, required)
+        input(placeholder="Location", name="location", type="text", value=loggedInUser.location, required)
+        input(type="submit", value="Update Profile")
+        if !loggedInUser.socialOnly
+            div.edit-profile__password
+                a(href="change-password") Change Password &rarr;
