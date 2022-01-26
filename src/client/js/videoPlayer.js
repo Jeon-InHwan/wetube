@@ -182,8 +182,5 @@ document.addEventListener("keydown", handleContainerKeyup);
 video.addEventListener("ended", handleEnded);
 
 if (video) {
-  handleLoadedData();
+  handleLoadedMetadata();
 }
-
-video.addEventListener("canplay", handleLoadedData);
-handleLoadedData();
