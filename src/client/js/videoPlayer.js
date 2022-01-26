@@ -164,7 +164,7 @@ volumeRange.addEventListener("input", handleVolumeChange);
 timeline.addEventListener("input", handleTimelineChange);
 
 // When the video's metadata is loaded, execute handleLoadedMetadata.
-video.addEventListener("loadedmetadata", handleLoadedMetadata);
+video.addEventListener("canplay", handleLoadedMetadata);
 
 // If there's change on the time of video, event called timeupdate will be fired.
 video.addEventListener("timeupdate", handleTimeUpdate);
