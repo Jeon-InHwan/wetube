@@ -1,4 +1,19 @@
 import multer from "multer";
+import multerS3 from "multer-s3";
+import aws from "aws-sdk";
+
+const s3 = new aws.S3({
+  credentials: {
+    accessKeyId: process.env.AWS_ID,
+    secretAccessKey: process.env.AWS_SECRET,
+  },
+});
+
+const multerUploader = multerS3({
+  s3: s3,
+  bucket: "wetube-cloning-youtube",
+  acl: "public-read",
+});
 
 // To make all the view template can use backend's data(here, the session data),
 // insert the data in locals. (pug view engine can get data from locals)
@@ -45,6 +60,7 @@ export const avatarUploadMiddleware = multer({
   limits: {
     fileSize: 10000000,
   },
+  storage: multerUploader,
 });
 
 export const videoUploadMiddleware = multer({
@@ -52,4 +68,5 @@ export const videoUploadMiddleware = multer({
   limits: {
     fileSize: 80000000,
   },
+  storage: multerUploader,
 });

@@ -3,7 +3,7 @@ extends base.pug
 block content
     div#videoContainer(data-video_id=video._id)
         if video.fileUrl
-            video(src="/" + video.fileUrl)
+            video(src=video.fileUrl, crossorigin)
         div#videoControls.videoControls
             div.videoControls__play
                 span#play.videoControls__playBtn

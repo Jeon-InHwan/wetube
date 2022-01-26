@@ -18,7 +18,7 @@ header
                         - if (loggedInUser.avatarUrl && loggedInUser.avatarUrl.startsWith("http"))
                             img.header__avatar(src=loggedInUser.avatarUrl, crossorigin)
                         - if (loggedInUser.avatarUrl && !loggedInUser.avatarUrl.startsWith("http"))
-                            img.header__avatar(src="/" + loggedInUser.avatarUrl)
+                            img.header__avatar(src="/" + loggedInUser.avatarUrl, crossorigin)
                         - if (!loggedInUser.avatarUrl)
                             span 😉
             else  

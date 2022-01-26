@@ -95,10 +95,12 @@ export const postEdit = async (req, res) => {
     }
   }
 
+  console.log(uploadedfile);
+
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
-      avatarUrl: uploadedfile ? uploadedfile.path : avatarUrl,
+      avatarUrl: uploadedfile ? uploadedfile.location : avatarUrl,
       name: name,
       email: email,
       username: username,
@@ -190,7 +192,7 @@ export const finishGithubLogin = async (req, res) => {
         },
       })
     ).json();
-    console.log(userData);
+
     const emailData = await (
       await fetch(`${apiUrl}/user/emails`, {
         headers: {
