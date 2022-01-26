@@ -2,6 +2,8 @@ import User from "../models/User";
 import Video from "../models/Video";
 import Comment from "../models/Comment";
 
+const isHeroku = process.env.NODE_ENV === "production";
+
 /*  callback functions & async/await 
 
     Video.find({}, (error, videos) => {
@@ -111,8 +113,8 @@ export const postUpload = async (req, res) => {
       title,
       description,
       hashtags: Video.formatHashtags(hashtags),
-      fileUrl: video[0].location,
-      thumbUrl: thumb[0].location,
+      fileUrl: isHeroku ? video[0].location : video[0].path,
+      thumbUrl: isHeroku ? thumb[0].location : thumb[0].path,
       owner: _id,
     });
     const user = await User.findById(_id);

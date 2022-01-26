@@ -12,6 +12,8 @@ const fullScreenIcon = fullScreenBtn.querySelector("i");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
 
+const isHeroku = process.env.NODE_ENV === "production";
+
 // volume variables
 let volumeValue = 0.8;
 video.volume = volumeValue;
@@ -181,6 +183,6 @@ document.addEventListener("keydown", handleContainerKeyup);
 // An eventListener that listens event triggered when the video is over.
 video.addEventListener("ended", handleEnded);
 
-if (video) {
+if (isHeroku && video) {
   handleLoadedMetadata();
 }
