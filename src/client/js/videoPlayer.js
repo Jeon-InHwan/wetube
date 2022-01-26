@@ -180,3 +180,5 @@ document.addEventListener("keydown", handleContainerKeyup);
 
 // An eventListener that listens event triggered when the video is over.
 video.addEventListener("ended", handleEnded);
+
+handleLoadedData();
