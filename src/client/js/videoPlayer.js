@@ -184,3 +184,6 @@ video.addEventListener("ended", handleEnded);
 if (video) {
   handleLoadedData();
 }
+
+video.addEventListener("canplay", handleLoadedData);
+handleLoadedData();
